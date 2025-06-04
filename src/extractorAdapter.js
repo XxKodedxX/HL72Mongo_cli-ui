@@ -131,6 +131,18 @@ class Extractor {
     const impressions = (message.OBX || [])
       .filter(fields => (fields[2] || '').toUpperCase() === '&IMP')
       .map(fields => fields[4] || null);
+    // Determine Tumor Registry flag: need one primary and one secondary term in impressions
+    const primaryTerms = ['mass', 'malignancy'];
+    const secondaryTerms = ['appear','favor','malignant','apparent','most likely','presumed','suspected','suspicious of','typical of'];
+    const text = impressions.filter(Boolean).join(' ').toLowerCase();
+    // find which terms actually appear
+    const foundPrimary = primaryTerms.filter(term => text.includes(term));
+    const foundSecondary = secondaryTerms.filter(term => text.includes(term));
+    const tumorRegistry = {
+      met: foundPrimary.length > 0 && foundSecondary.length > 0,
+      foundPrimary,
+      foundSecondary
+    };
     const sch = message.SCH?.[0] || [];
     const schedule = sch.length
       ? {
@@ -143,6 +155,12 @@ class Extractor {
             : null
         }
       : null;
+    // Extract MRN (PID-17) and ordering provider from ORC segment
+    const mrn = pid[17] || null;
+    const orcSegment = message.ORC?.[0] || [];
+    const rawProvider = orcSegment[11] || '';
+    const [providerId, providerLast, providerFirst] = rawProvider.split('^') || [];
+    const provider = providerLast && providerFirst ? { id: providerId, lastName: providerLast, firstName: providerFirst } : null;
 
     const [lastName, firstName] = (pid[4] || '').split('^');
     return {
@@ -159,15 +177,18 @@ class Extractor {
         name:      pid[4] || null,
         firstName: firstName || null,
         lastName:  lastName || null,
+        mrn,    // added MRN
         dob:       pid[6]
           ? new Date(`${pid[6].slice(0,4)}-${pid[6].slice(4,6)}-${pid[6].slice(6,8)}`)
           : null,
         gender:    pid[7] || null
       },
+      provider,  // added provider object
       orders,
       observations: groupedObservations,
       schedule,
       impressions,
+      tumorRegistry,
       processedAt: new Date()
     };
   }

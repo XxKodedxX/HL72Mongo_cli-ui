@@ -1,4 +1,0 @@
-MSH|^~\&|SchedulingApp|SchedFac|ClientApp|ClientFac|20250603||SIU^S12|MSG00004|P|2.4
-SCH|1|SCH1001|SCHF01|TestProcedure|R||20250610|120000|20250610|130000|15|Min|Routine
-PID|1||345678||Brown^Charlie||19850505|M|||321 Pine St^^Town^TX^75001||555-9012
-PV1|1|R|RAD^201^1||||9012^Lee^Chris|||||||||||345678

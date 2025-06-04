@@ -1,6 +1,0 @@
-MSH|^~\&|EHRApp|EHRFac|Billing|BillFac|20250603||DFT^P03|MSG00009|P|2.4
-PID|1||667788||Lopez^Maria||19980708|F|||910 Cedar St^^Metro^WA^98004||555-7788
-PV1|1|O|GYN^301^B||||3344^Adams^Helen|||||||||||667788
-FT1|1||20250602|20250602|CG|200|USD|||Charge for consultation
-FT1|2||20250602|20250602|CG|150|USD|||Lab fees
-NTE|1||Patient was fasting for lab tests.

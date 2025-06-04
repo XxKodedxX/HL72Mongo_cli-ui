@@ -1,6 +1,0 @@
-MSH|^~\&|ClinicApp|ClinicFac|EHRSystem|EHRFac|20250603||ORU^R01|MSG00006|P|2.5
-PID|1||556677||Miller^Sam||19781111|M|||88 Birch St^^PostTown^FL^33101||555-6677
-OBR|1|ORD2001||80053^CBC^L
-OBX|1|NM|718-7^WBC^LN||6.1|10^3/uL|4.5-11.0|N|||F
-OBX|2|NM|787-2^RBC^LN||4.7|10^6/uL|4.2-5.9|N|||F
-OBX|3|ST|12345-6^Comment^LN||No abnormalities detected|||

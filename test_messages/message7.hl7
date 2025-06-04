@@ -1,0 +1,5 @@
+MSH|^~\&|RADSys|RadFac|Clinic|ClinFac|20250603||ORU^R01|MSG00007|P|2.3.1
+PID|1||112233||Taylor^Alex||19950315|F|||12 Maple St^^Small^CA^90001||555-1122
+OBR|1|ORD3001||70450^CT Abdomen^C4
+OBX|1|NM|70450-1^CT Report Size^LN||1024|KB|500-2000|N|||F
+OBX|2|TX|70450-2^CT Findings^LN||No masses or lesions detected. Liver, kidneys, and spleen appear normal. Recommend follow-up if symptoms persist.

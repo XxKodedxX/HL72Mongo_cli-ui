@@ -1,0 +1,7 @@
+MSH|^~\&|LabPro|LabFac|EHR|EHRFac|20250603||ORU^R01|MSG00008|P|2.5
+PID|1||223344||Green^Patricia||19650707|F|||456 Spruce St^^City^ZZ^00000||555-3344
+OBR|1|ORD4001||90050^Lipid Panel^LN
+OBX|1|NM|39469-2^Cholesterol^LN||200|mg/dL|<200|H|||F~S
+OBX|2|NM|35200-5^Triglycerides^LN||150|mg/dL|<150|N|||F
+OBX|3|NM|2093-3^HDL^LN||55|mg/dL|>40|N|||F
+OBX|4|NM|2085-9^LDL^LN||130|mg/dL|<100|H|||F

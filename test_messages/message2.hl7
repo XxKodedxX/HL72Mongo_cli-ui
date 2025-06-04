@@ -1,0 +1,4 @@
+MSH|^~\&|LabSystem|LabFac|EHR|EHRFac|20250603||ADT^A04|MSG00002|P|2.5.1
+PID|1||789012||Smith^Jane||19751212|F|||456 Elm St^^Smalltown^CA^90210||555-5678
+NK1|1|Smith^Robert|Father|789 Elm St^^Smalltown^CA^90210|555-8765
+PV1|1|O|ER^202^1||||5678^Jones^Alice|||||||||||789012

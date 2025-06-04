@@ -10,8 +10,12 @@ class Parser {
    * @returns {Object<string, Array<Array<string>>>} - Parsed segments
    */
   parse(text) {
-    // Split into non-empty lines
-    const lines = text.split(/\r?\n/).filter(line => line.trim() !== '');
+    // Remove BOM if present
+    if (text.charCodeAt(0) === 0xFEFF) {
+      text = text.slice(1);
+    }
+    // Split into non-empty lines (handle CRLF, CR, and LF)
+    const lines = text.split(/\r\n|\r|\n/).filter(line => line.trim() !== '');
     const message = {};
 
     for (const line of lines) {

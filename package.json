@@ -17,7 +17,7 @@
     "mongodb": "^4.0.0"
   },
   "devDependencies": {
-    "pkg": "^6.1.2"
+    "pkg": "^6.1.3"
   },
   "pkg": {
     "scripts": [

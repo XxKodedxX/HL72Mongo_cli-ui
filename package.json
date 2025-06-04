@@ -5,14 +5,28 @@
   "main": "src/ui.js",
   "scripts": {
     "start": "node src/ui.js",
-    "start:cli": "node src/indexerAdapter.js"
+    "start:cli": "node src/indexerAdapter.js",
+    "build:pkg": "pkg . --target node16-linux-x64"
   },
+  "bin": "src/indexerAdapter.js",
   "dependencies": {
     "inquirer": "^8.2.0",
     "cli-progress": "^3.9.1",
     "chalk": "^4.1.0",
     "dotenv": "^16.0.0",
     "mongodb": "^4.0.0"
+  },
+  "devDependencies": {
+    "pkg": "^6.1.2"
+  },
+  "pkg": {
+    "scripts": [
+      "src/**/*.js"
+    ],
+    "targets": [
+      "node16-linux-x64"
+    ],
+    "outputPath": "dist"
   },
   "engines": {
     "node": ">=14.0.0"

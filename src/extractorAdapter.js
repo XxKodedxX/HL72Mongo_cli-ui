@@ -97,10 +97,14 @@ class Extractor {
 
   // Map ORU^R01 messages
   mapOruR01(msh, pid, message) {
-    const orders = (message.ORC || message.OBR || []).map(fields => ({
-      orderNumber: fields[1] || null,
-      placerOrder: fields[2] || null
-    }));
+    // Map full OBR segments and preserve raw fields
+    const orders = (message.OBR || []).map(fields => {
+      const [ , setId, placerOrder, fillerOrder, rawService, ...rest] = fields;
+      const [serviceCode, serviceText, serviceSystem] = rawService?.split('^') || [];
+      return { setId: setId || null, placerOrder: placerOrder || null, fillerOrder: fillerOrder || null,
+        service: { serviceCode: serviceCode || null, serviceText: serviceText || null, serviceSystem: serviceSystem || null },
+        rest, raw: fields };
+    });
     const observations = (message.OBX || []).map(fields => {
       const [,, rawCode] = fields;
       const [code] = rawCode?.split('^') || [];
@@ -113,6 +117,20 @@ class Extractor {
       const units = fields[5] || null;
       return { code, value, units };
     });
+    // Group observations by code into a single entry
+    const groupedObservations = Object.values(
+      observations.reduce((acc, obs) => {
+        if (!acc[obs.code]) {
+          acc[obs.code] = { code: obs.code, values: [], units: obs.units };
+        }
+        acc[obs.code].values.push(obs.value);
+        return acc;
+      }, {})
+    );
+    // Extract IMPRESSIONS OBX segments by code identifier “&IMP”
+    const impressions = (message.OBX || [])
+      .filter(fields => (fields[2] || '').toUpperCase() === '&IMP')
+      .map(fields => fields[4] || null);
     const sch = message.SCH?.[0] || [];
     const schedule = sch.length
       ? {
@@ -147,8 +165,9 @@ class Extractor {
         gender:    pid[7] || null
       },
       orders,
-      observations,
+      observations: groupedObservations,
       schedule,
+      impressions,
       processedAt: new Date()
     };
   }

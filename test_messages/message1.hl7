@@ -1,3 +1,27 @@
-MSH|^~\&|AppA|FacA|AppB|FacB|20250603||ADT^A01|MSG00001|P|2.6
-PID|1||123456||Doe^John||19800101|M|||123 Main St^^Metropolis^NY^10001||555-1234
-PV1|1|I|W^101^1||||1234^Smith^John|||||||||||123456
+MSH|^~\\&|DIA_HL7INTERFACE|DIA|RWSH|T|20220328114113||ORU^R01|DIARIS_220328114113275||2.3|||NE|NE
+PID|1|H00041123|ST01023011|H0-B20220208152056883|Simon^Steven^^^^^L||19721005|M||WH|Po Box 455^^DAVENPORT^OK^74026||405-240-1919|||D||SH2000000337|444-88-7079
+PV1|1|O|SH.RAD|EL|||1902361413^Ethridge^Cameron^^^^APRN^^^^^^NPI|||||||HOM||||CLI||MCD|||||||||||||||||||RWSH||DEP|||202202081420|202202081421
+ORC|RE|AN0000000023SRMC|||T|N|||202202081433|SWEST1||1902361413^Ethridge^Cameron^^^^APRN^^^^^^NPI|SH.RAD
+OBR|1|AN0000000023SRMC|AN0000000023SRMC|XR^ELBOWCMRT^XR elbow RT min 3V||202202081431|20220209100957|20220209102927||||||||1902361413^Ethridge^Cameron^^^^APRN^^^^^^NPI||XR^20220208-0016^22-23RWSH||IMG|XR|20220209102927|||S||1^^^202202081431^^R|1902361413^Ethridge^Cameron^^^^APRN^^^^^^NPI||||1497785893^Weaver^Blake^^DO^^^^^^^^NPI|1497785893^Y^^^^^^^^^^^NPI|SWEST1^West^Shelly^^^^^^^^^^XX|DIA
+OBX|1|FT|&GDT||Reason for Exam: Pain||||||F||||
+OBX|2|FT|&GDT||EXAM:  RIGHT  ELBOW -FOUR VIEWS.||||||F||||
+OBX|3|FT|&GDT||||||||F||||
+OBX|4|FT|&GDT||COMPARISONS: None||||||F||||
+OBX|5|FT|&GDT||||||||F||||
+OBX|6|FT|&GDT||FINDINGS:||||||F||||
+OBX|7|FT|&GDT||||||||F||||
+OBX|8|FT|&GDT||The osseous and joint structures are intact and without evidence of acute fracture or dislocation.  The visualized soft tissues are radiographically normal.  No evidence of joint effusion.   No significant degenerative changes.  Round lucencies within the medial and lateral soft tissues of the proximal forearm likely artifactual as this is not seen on forearm exam done same day.||||||F||||
+OBX|9|FT|&GDT||||||||F||||
+OBX|10|FT|&IMP||IMPRESSION:||||||F||||
+OBX|11|FT|&IMP||||||||F||||
+OBX|12|FT|&IMP||Unremarkable radiographic evaluation of the right elbow.||||||F||||
+OBX|13|FT|&IMP||||||||F||||
+OBX|14|FT|&IMP||||||||F||||
+OBX|15|FT|&IMP||All reports both verbal and nonverbal are conducted in the Central Time zone unless otherwise specified.||||||F||||
+OBX|16|FT|&IMP||||||||F||||
+OBX|17|FT|&IMP||By BLAKE WEAVER, D.O.  02/09/2022  - 10:25:54 (Radiologist)||||||F||||
+OBX|18|FT|&IMP||Electronically signed by BLAKE WEAVER, D.O.  02/09/2022  - 10:25:54||||||F||||
+OBX|19|FT|&IMP||||||||F||||
+OBX|20|FT|&IMP||L:654 R:BXW: T:crj (dia360VR)||||||F||||
+OBX|21|FT|&IMP||||||||F||||
+OBX|22|FT|&IMP||||||||F||||

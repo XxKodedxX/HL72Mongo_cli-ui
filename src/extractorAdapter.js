@@ -1,38 +1,6 @@
 // extractorAdapter.js - CommonJS adapter for extractor.js
 const fs = require('fs');
 const path = require('path');
-
-// Create    // Extract IMPRESSIONS OBX segments by code identifier "&IMP"
-    const impressions = (message.OBX || [])
-      .filter(fields => (fields[2] || '').toUpperCase() === '&IMP')
-      .map(fields => fields[4] || null);
-    
-    // Define reportable terms from the image
-    const reportableTerms = [
-      'apparent', 'apparently',
-      'appears',
-      'comparable with',
-      'compatible with',
-      'consistent with',
-      'favor', 'favors',
-      'malignant appearing',
-      'most likely',
-      'presumed',
-      'probable',
-      'suspect', 'suspected',
-      'suspicious', 'suspicious for',
-      'typical of'
-    ];
-    
-    const text = impressions.filter(Boolean).join(' ').toLowerCase();
-    
-    // Find which reportable terms appear in the impressions
-    const foundTerms = reportableTerms.filter(term => text.includes(term));
-    
-    const tumorRegistry = {
-      met: foundTerms.length > 0, // Flag as reportable if any term is found
-      foundTerms
-    };
 class Extractor {
   /**
    * Extract indexable fields from parsed HL7 object
@@ -161,17 +129,32 @@ class Extractor {
     const impressions = (message.OBX || [])
       .filter(fields => (fields[2] || '').toUpperCase() === '&IMP')
       .map(fields => fields[4] || null);
-    // Determine Tumor Registry flag: need one primary and one secondary term in impressions
-    const primaryTerms = ['mass', 'malignancy'];
-    const secondaryTerms = ['appear','favor','malignant','apparent','most likely','presumed','suspected','suspicious','typical'];
+    
+    // Define reportable terms from the image
+    const reportableTerms = [
+      'apparent', 'apparently',
+      'appears',
+      'comparable with',
+      'compatible with',
+      'consistent with',
+      'favor', 'favors',
+      'malignant appearing',
+      'most likely',
+      'presumed',
+      'probable',
+      'suspect', 'suspected',
+      'suspicious', 'suspicious for',
+      'typical of'
+    ];
+    
     const text = impressions.filter(Boolean).join(' ').toLowerCase();
-    // find which terms actually appear
-    const foundPrimary = primaryTerms.filter(term => text.includes(term));
-    const foundSecondary = secondaryTerms.filter(term => text.includes(term));
+    
+    // Find which reportable terms appear in the impressions
+    const foundTerms = reportableTerms.filter(term => text.includes(term));
+    
     const tumorRegistry = {
-      met: foundPrimary.length > 0 && foundSecondary.length > 0,
-      foundPrimary,
-      foundSecondary
+      met: foundTerms.length > 0, // Flag as reportable if any term is found
+      foundTerms
     };
     const sch = message.SCH?.[0] || [];
     const schedule = sch.length

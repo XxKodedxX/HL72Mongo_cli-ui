@@ -7,7 +7,7 @@ let client;
 
 async function connect() {
   // Read connection settings at runtime
-  const url = process.env.MONGO_URL || 'mongodb://localhost:27017';
+  const url = process.env.MONGO_URL || 'mongodb://10.10.200.150:27017';
   const dbName = process.env.MONGO_DB || 'hl7';
   
   if (!client) {

@@ -2,7 +2,37 @@
 const fs = require('fs');
 const path = require('path');
 
-// Create an Extractor class and export it directly
+// Create    // Extract IMPRESSIONS OBX segments by code identifier "&IMP"
+    const impressions = (message.OBX || [])
+      .filter(fields => (fields[2] || '').toUpperCase() === '&IMP')
+      .map(fields => fields[4] || null);
+    
+    // Define reportable terms from the image
+    const reportableTerms = [
+      'apparent', 'apparently',
+      'appears',
+      'comparable with',
+      'compatible with',
+      'consistent with',
+      'favor', 'favors',
+      'malignant appearing',
+      'most likely',
+      'presumed',
+      'probable',
+      'suspect', 'suspected',
+      'suspicious', 'suspicious for',
+      'typical of'
+    ];
+    
+    const text = impressions.filter(Boolean).join(' ').toLowerCase();
+    
+    // Find which reportable terms appear in the impressions
+    const foundTerms = reportableTerms.filter(term => text.includes(term));
+    
+    const tumorRegistry = {
+      met: foundTerms.length > 0, // Flag as reportable if any term is found
+      foundTerms
+    };
 class Extractor {
   /**
    * Extract indexable fields from parsed HL7 object
@@ -133,7 +163,7 @@ class Extractor {
       .map(fields => fields[4] || null);
     // Determine Tumor Registry flag: need one primary and one secondary term in impressions
     const primaryTerms = ['mass', 'malignancy'];
-    const secondaryTerms = ['appear','favor','malignant','apparent','most likely','presumed','suspected','suspicious of','typical of'];
+    const secondaryTerms = ['appear','favor','malignant','apparent','most likely','presumed','suspected','suspicious','typical'];
     const text = impressions.filter(Boolean).join(' ').toLowerCase();
     // find which terms actually appear
     const foundPrimary = primaryTerms.filter(term => text.includes(term));
